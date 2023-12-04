@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="playPane" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to right, #c9d6ff, #e2e2e2);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.audioreader_trialgui_fx2.PlayPaneController">
+    <children>
+        <HBox alignment="CENTER" layoutX="20.0" layoutY="150.0" spacing="10.0">
+            <children>
+                <Button fx:id="playButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4b79a1; -fx-text-fill: white; -fx-font-size: 16px;" text="Play" />
+                <Button fx:id="stopButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4b79a1; -fx-text-fill: white; -fx-font-size: 16px;" text="Stop" />
+            </children>
+        </HBox>
+        <Label fx:id="timeLabel" alignment="CENTER" layoutX="220.0" layoutY="66.0" prefHeight="20.0" prefWidth="83.0" style="-fx-font-size: 14px;" text="0:00/0:00" />
+        <Slider fx:id="progressBar" layoutX="20.0" layoutY="68.0" prefWidth="200.0" style="-fx-fill: #4b79a1; -fx-background-color: #e2e2e2;" />
+        <Slider fx:id="volumeBar" layoutX="220.0" layoutY="100.0" orientation="VERTICAL" prefHeight="93.0" prefWidth="83.0" style="-fx-show-tick-labels: true; -fx-show-tick-marks: true; -fx-fill: #ff9933;" />
+    </children>
+</AnchorPane>
