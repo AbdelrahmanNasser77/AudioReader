@@ -33,7 +33,6 @@ public class Mp3Reader {
 
             int header;
 
-            // The arrays to store the bitrate and sampling frequency values for each version and layer
             int[][][] bitrates = {
                     // For MPEG 2.5
                     {
