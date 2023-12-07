@@ -28,7 +28,6 @@ public class Mp3Reader {
             // The byte value to store the current byte read
             int byteValue;
 
-            // The boolean flag to indicate if the frame sync is found
             boolean syncFound = false;
 
             int header;
