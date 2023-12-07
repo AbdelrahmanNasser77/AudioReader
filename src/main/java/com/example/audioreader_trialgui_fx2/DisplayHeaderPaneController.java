@@ -1,6 +1,5 @@
 package com.example.audioreader_trialgui_fx2;
 
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
