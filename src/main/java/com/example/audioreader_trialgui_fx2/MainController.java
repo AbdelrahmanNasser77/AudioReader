@@ -1,36 +1,37 @@
-// This is the controller class for the main window
 package com.example.audioreader_trialgui_fx2;
 
-import javafx.beans.property.Property;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 
-public class HelloController {
+public class MainController {
 
     @FXML
     private MenuBar menuBar;
-    @FXML
-    private MenuItem openItem;
+
     @FXML
     private MenuItem playItem;
+
     @FXML
     private MenuItem displayHeaderItem;
 
-    private File audioFile; // the selected audio file
+    private File audioFile;
 
     @FXML
-    protected void handleOpen() {
+    protected void handleOpen() throws IOException {
         // create a file chooser to select an audio file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Audio File");
@@ -40,12 +41,21 @@ public class HelloController {
         // show the file chooser dialog and get the selected file
         audioFile = fileChooser.showOpenDialog(menuBar.getScene().getWindow());
         if (audioFile != null) {
-            // create an audio player object based on the file extension
-            String extension = audioFile.getName().substring(audioFile.getName().lastIndexOf(".") + 1);
+            String format = FormatDetector.getFormat(audioFile);
 
-            // enable the play and display header menu items
-            playItem.setDisable(false);
-            displayHeaderItem.setDisable(false);
+            if (format.equals("wav") || format.equals("mp3")) {
+                playItem.setDisable(false);
+                displayHeaderItem.setDisable(false);
+            }
+            else {
+                Alert alert = new Alert (Alert.AlertType.WARNING);
+
+                alert.setTitle ("WARNING");
+                alert.setHeaderText ("UNSUPPORTED FORMAT");
+                alert.setContentText ("Your File Format is not Supported. Try Another File!");
+
+                alert.showAndWait ();
+            }
         }
     }
 
@@ -53,7 +63,7 @@ public class HelloController {
     protected void handlePlay() {
         try {
             // load the play pane fxml file
-            FXMLLoader loader = new FXMLLoader(HelloController.class.getResource("play-pane.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("play-pane.fxml"));
             AnchorPane playRoot = loader.load();
 
             // get the play pane controller and pass the audio player object
@@ -81,7 +91,7 @@ public class HelloController {
     protected void handleDisplayHeader() {
         try {
             // load the display header pane fxml file
-            FXMLLoader loader = new FXMLLoader(HelloController.class.getResource("display-header-pane.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("display-header-pane.fxml"));
             AnchorPane displayRoot = loader.load();
 
             DisplayHeaderPaneController displayController = loader.getController();
@@ -91,7 +101,7 @@ public class HelloController {
             Scene displayScene = new Scene(displayRoot, 600, 400);
             Stage displayStage = new Stage();
             displayStage.setScene(displayScene);
-            displayStage.setTitle("Display Header");
+            displayStage.setTitle("Header of \"" + audioFile.getName() + "\"");
             displayStage.show();
 
         } catch (IOException e) {

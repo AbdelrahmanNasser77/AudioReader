@@ -1,6 +1,4 @@
 package com.example.audioreader_trialgui_fx2;
-
-
 public class AudioProperty {
     private String columnName;
     private String value;

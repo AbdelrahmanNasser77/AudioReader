@@ -1,8 +1,5 @@
 package com.example.audioreader_trialgui_fx2;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
